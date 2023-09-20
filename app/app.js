@@ -16,13 +16,16 @@ app.get('/metar', async (req, res) => {
     
     const parser = new XMLParser();
     const parsed = parser.parse(response.data);
-    const metar = parsed.response.data.METAR;
-    if (typeof metar === 'undefined') {
-      res.status(400).send('Not METAR found for that station');
+    if (!parsed || !parsed.response || !parsed.response.data) {
+      res.status(400).send('Bad Request Error');
+    } else {
+      if (!parsed.response.data.METAR || !parsed.response.data.METAR.raw_text) {
+        res.status(400).send('Not METAR found for that station');
+      } else {
+        const metar = decode(parsed.response.data.METAR.raw_text);
+        res.status(200).send(metar);
+      }
     }
-    
-    const decodedMetar = decode(parsed.response.data.METAR.raw_text);
-    res.status(200).send(decodedMetar);
   } catch (err) {
     console.error(err)
     res.status(500).send('Internal Server Error')
