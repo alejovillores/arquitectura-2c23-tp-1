@@ -3,7 +3,7 @@ const axios = require('axios');
 const { XMLParser } = require('fast-xml-parser');
 const { decode } = require('metar-decoder');
 const app = express();
-const { HTTP_200, HTTP_400, HTTP_500 } = require('./constants');
+const { HTTP_200, HTTP_400, HTTP_500, SPACEFLIGHT_API_URL } = require('./constants');
 
 app.get('/', (req, res) => {
   res.send('Hello world!');
@@ -30,8 +30,7 @@ app.get('/metar', async (req, res) => {
 
 app.get('/spaceflight_news', async (req, res) => {
   try {
-    let limit = req.query.limit;
-    const response = await axios.get(`https://api.spaceflightnewsapi.net/v4/articles/?limit=${limit}`);
+    const response = await axios.get(`${SPACEFLIGHT_API_URL}/v4/articles/?limit=5`);
     
     news = []
     response.data.results.forEach((article) => {
