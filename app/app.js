@@ -2,8 +2,8 @@ const express = require('express');
 const axios = require('axios');
 const { XMLParser } = require('fast-xml-parser');
 const { decode } = require('metar-decoder');
-
 const app = express();
+const { HTTP_200, HTTP_400, HTTP_500 } = require('./constants');
 
 app.get('/', (req, res) => {
   res.send('Hello world!');
@@ -16,19 +16,15 @@ app.get('/metar', async (req, res) => {
     
     const parser = new XMLParser();
     const parsed = parser.parse(response.data);
-    if (!parsed || !parsed.response || !parsed.response.data) {
-      res.status(400).send('Bad Request Error');
+    if (!parsed?.response?.data?.METAR?.raw_text) {
+        res.status(HTTP_400).send('Not METAR found for that station');
     } else {
-      if (!parsed.response.data.METAR || !parsed.response.data.METAR.raw_text) {
-        res.status(400).send('Not METAR found for that station');
-      } else {
-        const metar = decode(parsed.response.data.METAR.raw_text);
-        res.status(200).send(metar);
-      }
+      const metar = decode(parsed.response.data.METAR.raw_text);
+      res.status(HTTP_200).send(metar);
     }
   } catch (err) {
     console.error(err)
-    res.status(500).send('Internal Server Error')
+    res.status(HTTP_500).send('Internal Server Error')
   }
 });
 
