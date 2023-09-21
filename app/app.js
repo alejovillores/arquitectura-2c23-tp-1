@@ -28,7 +28,7 @@ app.get('/metar', async (req, res) => {
   }
 });
 
-app.get('/spaceflight-news', async (req, res) => {
+app.get('/spaceflight_news', async (req, res) => {
   try {
     let limit = req.query.limit;
     const response = await axios.get(`https://api.spaceflightnewsapi.net/v4/articles/?limit=${limit}`);
@@ -37,7 +37,7 @@ app.get('/spaceflight-news', async (req, res) => {
     response.data.results.forEach((article) => {
       news.push(article.title);
     });
-    
+
     res.status(HTTP_200).send(news);
   } catch (err) {
     console.error(err)
