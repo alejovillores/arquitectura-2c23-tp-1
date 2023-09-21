@@ -9,6 +9,7 @@ const {
 	HTTP_500,
 	SPACEFLIGHT_API_URL,
 	LIMIT,
+	METAR_BASE_API_URL,
 } = require('./constants');
 
 /*
@@ -25,7 +26,7 @@ app.get('/metar', async (req, res) => {
 	try {
 		let station = req.query.station;
 		const response = await axios.get(
-			`https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=${station}&hoursBeforeNow=1`
+			`${METAR_BASE_API_URL}?dataSource=metars&requestType=retrieve&format=xml&stationString=${station}&hoursBeforeNow=1`
 		);
 
 		const parser = new XMLParser();
