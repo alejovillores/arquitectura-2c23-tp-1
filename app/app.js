@@ -12,7 +12,8 @@ const {
 	LIMIT,
 	METAR_BASE_API_URL,
 	REDIS_URL,
-	ALLOWED_SECONDS,
+	SPACEFLIGHT_TOLERANCE,
+	METAR_TOLERANCE,
 } = require('./constants');
 
 const redis = require('redis');
@@ -37,9 +38,23 @@ process.on('SIGINT', async () => {
 	process.exit();
 });
 
-async function cache(key) {
+/* Utils functions */
+async function getValueFromCache(key) {
 	const result = await client.get(key);
 	return result != null ? JSON.parse(result) : result;
+}
+
+function outdatedData(oldTimestamp, tolerance) {
+	let now = Date.now();
+	let secondsDiff = Math.floor(Math.abs(now - oldTimestamp) / 1000);
+	console.log(`The time difference is : ${secondsDiff} secs`);
+	return secondsDiff > tolerance;
+}
+
+function parseMetarResponse(data) {
+	const parser = new XMLParser();
+	const parsed = parser.parse(data);
+	return parsed?.response?.data?.METAR?.raw_text;
 }
 
 /*
@@ -57,39 +72,55 @@ app.get('/', (_, res) => {
   metar service 
 */
 app.get('/metar', async (req, res) => {
-	try {
+	if (req.query.station) {
 		let station = req.query.station;
-		const response = await axios.get(
-			`${METAR_BASE_API_URL}?dataSource=metars&requestType=retrieve&format=xml&stationString=${station}&hoursBeforeNow=1`
-		);
-		const parser = new XMLParser();
-		const parsed = parser.parse(response.data);
-		if (!parsed?.response?.data?.METAR?.raw_text) {
-			res.status(HTTP_400).send('Not METAR found for that station');
+		let savedData = await getValueFromCache(station);
+		if (
+			savedData === null ||
+			outdatedData(savedData.timestamp, METAR_TOLERANCE)
+		) {
+			try {
+				console.log('Sending request to spaceflight api');
+
+				const response = await axios.get(
+					`${METAR_BASE_API_URL}?dataSource=metars&requestType=retrieve&format=xml&stationString=${station}&hoursBeforeNow=1`
+				);
+				const info = parseMetarResponse(response.data);
+				if (info) {
+					const metar = decode(info);
+					await client.set(
+						station,
+						JSON.stringify({
+							station: metar,
+							timestamp: Date.now(),
+						})
+					);
+					res.status(HTTP_200).send(metar);
+				} else {
+					res.status(HTTP_400).send('Not METAR found for that station');
+				}
+			} catch (err) {
+				console.error(err);
+				res.status(HTTP_500).send('Internal Server Error');
+			}
 		} else {
-			const metar = decode(parsed.response.data.METAR.raw_text);
-			res.status(HTTP_200).send(metar);
+			console.log('Data already in cache');
+			res.status(HTTP_200).send(savedData.station);
 		}
-	} catch (err) {
-		console.error(err);
-		res.status(HTTP_500).send('Internal Server Error');
+	} else {
+		res.status(HTTP_400).send('No station supplied');
 	}
 });
 
 /*
   spaceflight_news service 
 */
-
-function outdatedData(oldTimestamp) {
-	let now = Date.now();
-	let secondsDiff = Math.floor(Math.abs(now - oldTimestamp) / 1000);
-	console.log(`The time difference is : ${secondsDiff} secs`);
-	return secondsDiff > ALLOWED_SECONDS;
-}
-
 app.get('/spaceflight_news', async (_, res) => {
-	const savedData = await cache('spaceflight_news');
-	if (savedData == null || outdatedData(savedData.timestamp)) {
+	const savedData = await getValueFromCache('spaceflight_news');
+	if (
+		savedData === null ||
+		outdatedData(savedData.timestamp, SPACEFLIGHT_TOLERANCE)
+	) {
 		try {
 			console.log('Sending request to spaceflight api');
 			const response = await axios.get(`${SPACEFLIGHT_API_URL}${LIMIT}`);
