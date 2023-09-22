@@ -12,6 +12,7 @@ const {
 	LIMIT,
 	METAR_BASE_API_URL,
 	REDIS_URL,
+	ALLOWED_SECONDS,
 } = require('./constants');
 
 const redis = require('redis');
@@ -36,15 +37,20 @@ process.on('SIGINT', async () => {
 	process.exit();
 });
 
-app.get('/', (_, res) => {
-	res.status(HTTP_301).redirect('/ping');
-});
+async function cache(key) {
+	const result = await client.get(key);
+	return result != null ? JSON.parse(result) : result;
+}
 
 /*
-  ping service 
+ping service 
 */
 app.get('/ping', async (_, res) => {
 	res.status(HTTP_200).send(`I'm alive!, the stored value is ${value}`);
+});
+
+app.get('/', (_, res) => {
+	res.status(HTTP_301).redirect('/ping');
 });
 
 /*
@@ -73,18 +79,26 @@ app.get('/metar', async (req, res) => {
 /*
   spaceflight_news service 
 */
-app.get('/spaceflight_news', async (_, res) => {
-	const savedData = await client.get('spaceflight_news');
-	if (savedData == null) {
-		try {
-			console.log('news are not in cache');
 
+function outdatedData(oldTimestamp) {
+	let now = Date.now();
+	let secondsDiff = Math.floor(Math.abs(now - oldTimestamp) / 1000);
+	console.log(`The time difference is : ${secondsDiff} secs`);
+	return secondsDiff > ALLOWED_SECONDS;
+}
+
+app.get('/spaceflight_news', async (_, res) => {
+	const savedData = await cache('spaceflight_news');
+	if (savedData == null || outdatedData(savedData.timestamp)) {
+		try {
+			console.log('Sending request to spaceflight api');
 			const response = await axios.get(`${SPACEFLIGHT_API_URL}${LIMIT}`);
 			let news = response.data.results.map((article) => article.title);
 			await client.set(
 				'spaceflight_news',
 				JSON.stringify({
 					news: news,
+					timestamp: Date.now(),
 				})
 			);
 			res.status(HTTP_200).send(news);
@@ -93,8 +107,8 @@ app.get('/spaceflight_news', async (_, res) => {
 			res.status(HTTP_500).send('Internal Server Error');
 		}
 	} else {
-		console.log('news are in cache');
-		let news = JSON.parse(savedData).news;
+		console.log('News are in cache');
+		let news = savedData.news;
 		res.status(HTTP_200).send(news);
 	}
 });

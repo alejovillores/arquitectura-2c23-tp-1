@@ -11,6 +11,7 @@ REDIS_URL = 'redis://localhost:6479';
 const SPACEFLIGHT_API_URL =
 	'https://api.spaceflightnewsapi.net/v4/articles/?limit=';
 const LIMIT = 5;
+const ALLOWED_SECONDS = 10;
 
 const METAR_BASE_API_URL =
 	'https://www.aviationweather.gov/adds/dataserver_current/httpparam';
@@ -24,4 +25,5 @@ module.exports = {
 	LIMIT,
 	METAR_BASE_API_URL,
 	REDIS_URL,
+	ALLOWED_SECONDS,
 };
