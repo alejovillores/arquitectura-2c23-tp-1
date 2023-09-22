@@ -2,6 +2,10 @@
 const HTTP_200 = 200;
 const HTTP_400 = 400;
 const HTTP_500 = 500;
+const HTTP_301 = 301;
+
+/* DB URL */
+REDIS_URL = 'redis://localhost:6479';
 
 /* EXTERNALS API URL  */
 const SPACEFLIGHT_API_URL =
@@ -13,9 +17,11 @@ const METAR_BASE_API_URL =
 
 module.exports = {
 	HTTP_200,
+	HTTP_301,
 	HTTP_400,
 	HTTP_500,
 	SPACEFLIGHT_API_URL,
 	LIMIT,
 	METAR_BASE_API_URL,
+	REDIS_URL,
 };
