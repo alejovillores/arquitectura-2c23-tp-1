@@ -11,11 +11,12 @@ REDIS_URL = 'redis://localhost:6479';
 const SPACEFLIGHT_API_URL =
 	'https://api.spaceflightnewsapi.net/v4/articles/?limit=';
 const LIMIT = 5;
-const ALLOWED_SECONDS = 10;
+const SPACEFLIGHT_TOLERANCE = 30; // 30 secs
 
 const METAR_BASE_API_URL =
 	'https://www.aviationweather.gov/adds/dataserver_current/httpparam';
 
+const METAR_TOLERANCE = 3600; // one hour
 module.exports = {
 	HTTP_200,
 	HTTP_301,
@@ -25,5 +26,6 @@ module.exports = {
 	LIMIT,
 	METAR_BASE_API_URL,
 	REDIS_URL,
-	ALLOWED_SECONDS,
+	SPACEFLIGHT_TOLERANCE,
+	METAR_TOLERANCE,
 };
