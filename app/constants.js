@@ -11,6 +11,9 @@ const LIMIT = 5;
 const METAR_BASE_API_URL =
 	'https://www.aviationweather.gov/adds/dataserver_current/httpparam';
 
+const QUOTE_BASE_API_URL = 
+	'https://api.quotable.io/quotes/random'
+
 module.exports = {
 	HTTP_200,
 	HTTP_400,
@@ -18,4 +21,5 @@ module.exports = {
 	SPACEFLIGHT_API_URL,
 	LIMIT,
 	METAR_BASE_API_URL,
+	QUOTE_BASE_API_URL,
 };
