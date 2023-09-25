@@ -17,6 +17,8 @@ const METAR_BASE_API_URL =
 	'https://www.aviationweather.gov/adds/dataserver_current/httpparam';
 
 const METAR_TOLERANCE = 3600; // one hour
+const QUOTE_BASE_API_URL = 'https://api.quotable.io/quotes/random';
+
 module.exports = {
 	HTTP_200,
 	HTTP_301,
@@ -28,4 +30,5 @@ module.exports = {
 	REDIS_URL,
 	SPACEFLIGHT_TOLERANCE,
 	METAR_TOLERANCE,
+	QUOTE_BASE_API_URL,
 };

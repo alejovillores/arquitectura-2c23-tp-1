@@ -8,12 +8,13 @@ const {
 	HTTP_301,
 	HTTP_400,
 	HTTP_500,
-	SPACEFLIGHT_API_URL,
 	LIMIT,
-	METAR_BASE_API_URL,
 	REDIS_URL,
-	SPACEFLIGHT_TOLERANCE,
 	METAR_TOLERANCE,
+	SPACEFLIGHT_TOLERANCE,
+	SPACEFLIGHT_API_URL,
+	METAR_BASE_API_URL,
+	QUOTE_BASE_API_URL,
 } = require('./constants');
 
 const redis = require('redis');
@@ -141,6 +142,21 @@ app.get('/spaceflight_news', async (_, res) => {
 		console.log('News are in cache');
 		let news = savedData.news;
 		res.status(HTTP_200).send(news);
+	}
+});
+
+/*
+  quotes service 
+*/
+app.get('/quote', async (_, res) => {
+	try {
+		const response = await axios.get(`${QUOTE_BASE_API_URL}`);
+		quote = response.data[0];
+
+		res.status(HTTP_200).send({ quote: quote.content, author: quote.author });
+	} catch (err) {
+		console.error(err);
+		res.status(HTTP_500).send('Internal Server Error');
 	}
 });
 
