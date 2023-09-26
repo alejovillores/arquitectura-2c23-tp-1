@@ -9,6 +9,7 @@ const {
 	HTTP_400,
 	HTTP_500,
 	LIMIT,
+	OFFSET,
 	REDIS_URL,
 	METAR_TOLERANCE,
 	SPACEFLIGHT_TOLERANCE,
@@ -149,14 +150,40 @@ app.get('/spaceflight_news', async (_, res) => {
   quotes service 
 */
 app.get('/quote', async (_, res) => {
-	try {
-		const response = await axios.get(`${QUOTE_BASE_API_URL}`);
-		quote = response.data[0];
+	const qoutesSaved = await getValueFromCache('quotes');
+	const qouteOffset = await client.get('quotes-offset');
+	if (qoutesSaved === null || parseInt(qouteOffset) === OFFSET + 1) {
+		try {
+			console.log('No quotes saved in memory, sending requests');
+			const response = await axios.get(`${QUOTE_BASE_API_URL}`);
+			let qoutes = response.data.map((qoute) => {
+				return {
+					content: qoute.content,
+					author: qoute.author,
+				};
+			});
+			console.log(JSON.stringify(qoutes));
+			await client.set(
+				'quotes',
+				JSON.stringify({
+					quotes: qoutes,
+				})
+			);
+			let initialOffset = 2;
+			await client.set('quotes-offset', initialOffset);
 
-		res.status(HTTP_200).send({ quote: quote.content, author: quote.author });
-	} catch (err) {
-		console.error(err);
-		res.status(HTTP_500).send('Internal Server Error');
+			quote = qoutes[0];
+			res.status(HTTP_200).send(quote);
+		} catch (err) {
+			console.error(err);
+			res.status(HTTP_500).send('Internal Server Error');
+		}
+	} else {
+		console.log('Qoutes saved in memory');
+		let offset = parseInt(qouteOffset);
+		let quote = qoutesSaved.quotes[offset - 1];
+		await client.set('quotes-offset', offset + 1);
+		res.status(HTTP_200).send(quote);
 	}
 });
 
