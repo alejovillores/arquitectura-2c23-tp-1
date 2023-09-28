@@ -18,16 +18,15 @@ const {
 	QUOTE_BASE_API_URL,
 } = require('./constants');
 
-const redis = require('redis');
-const createClient = redis.createClient;
+const { createClient } = require('redis');
 
-const client = createClient();
+const client = createClient({
+	url: REDIS_URL
+  });
 
 init_redis = async () => {
 	try {
-		await client.connect({
-			url: `${REDIS_URL}`,
-		});
+		await client.connect();
 		console.log('db connected');
 	} catch (error) {
 		client.on('error', (err) => console.log('Redis Client Error', err));
@@ -63,7 +62,7 @@ function parseMetarResponse(data) {
 ping service 
 */
 app.get('/ping', async (_, res) => {
-	res.status(HTTP_200).send(`I'm alive!, the stored value is ${value}`);
+	res.status(HTTP_200).send(`I'm alive!`);
 });
 
 app.get('/', (_, res) => {

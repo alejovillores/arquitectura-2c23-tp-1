@@ -5,11 +5,12 @@ const HTTP_500 = 500;
 const HTTP_301 = 301;
 
 /* DB URL */
-REDIS_URL = 'redis://localhost:6479';
+REDIS_URL = 'redis://redis:6379';
 
 /* EXTERNALS API URL  */
 const SPACEFLIGHT_API_URL =
 	'https://api.spaceflightnewsapi.net/v4/articles/?limit=';
+
 const LIMIT = 5;
 const SPACEFLIGHT_TOLERANCE = 30; // 30 secs
 
