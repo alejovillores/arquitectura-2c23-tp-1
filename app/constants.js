@@ -2,7 +2,6 @@
 const HTTP_200 = 200;
 const HTTP_400 = 400;
 const HTTP_500 = 500;
-const HTTP_301 = 301;
 
 /* DB URL */
 REDIS_URL = 'redis://redis:6379';
@@ -23,7 +22,6 @@ const OFFSET = 20;
 
 module.exports = {
 	HTTP_200,
-	HTTP_301,
 	HTTP_400,
 	HTTP_500,
 	SPACEFLIGHT_API_URL,

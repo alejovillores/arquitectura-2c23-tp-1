@@ -5,7 +5,6 @@ const { decode } = require('metar-decoder');
 const app = express();
 const {
 	HTTP_200,
-	HTTP_301,
 	HTTP_400,
 	HTTP_500,
 	LIMIT,
@@ -59,18 +58,14 @@ function parseMetarResponse(data) {
 }
 
 /*
-ping service 
+	Ping Service 
 */
 app.get('/ping', async (_, res) => {
 	res.status(HTTP_200).send(`I'm alive!`);
 });
 
-app.get('/', (_, res) => {
-	res.status(HTTP_301).redirect('/ping');
-});
-
 /*
-  metar service 
+	Metar Service 
 */
 app.get('/metar', async (req, res) => {
 	if (req.query.station) {
@@ -114,7 +109,7 @@ app.get('/metar', async (req, res) => {
 });
 
 /*
-  spaceflight_news service 
+	Spaceflight News Service 
 */
 app.get('/spaceflight_news', async (_, res) => {
 	const savedData = await getValueFromCache('spaceflight_news');
@@ -146,7 +141,7 @@ app.get('/spaceflight_news', async (_, res) => {
 });
 
 /*
-  quotes service 
+	Quotes Service 
 */
 app.get('/quote', async (_, res) => {
 	const qoutesSaved = await getValueFromCache('quotes');
