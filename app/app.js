@@ -14,17 +14,19 @@ const {
 } = require('./constants');
 
 /*
-  ping service 
+	Ping Service 
 */
 app.get('/ping', (_, res) => {
+	console.log('Get Ping Request')
 	res.status(HTTP_200).send("I'm alive!");
 });
 
 /*
-  metar service 
+	Metar Service 
 */
 app.get('/metar', async (req, res) => {
 	try {
+		console.log('Get Metar Request')
 		let station = req.query.station;
 		const response = await axios.get(
 			`${METAR_BASE_API_URL}?dataSource=metars&requestType=retrieve&format=xml&stationString=${station}&hoursBeforeNow=1`
@@ -45,10 +47,11 @@ app.get('/metar', async (req, res) => {
 });
 
 /*
-  spaceflight_news service 
+	Spaceflight News Service 
 */
 app.get('/spaceflight_news', async (_, res) => {
 	try {
+		console.log('Get Spaceflight News Request')
 		const response = await axios.get(`${SPACEFLIGHT_API_URL}${LIMIT}`);
 
 		news = response.data.results.map((article) => article.title);
@@ -60,10 +63,11 @@ app.get('/spaceflight_news', async (_, res) => {
 });
 
 /*
-  quotes service 
+	Quotes Service 
 */
 app.get('/quote', async (_, res) => {
 	try {
+		console.log('Get Quote Request')
 		const response = await axios.get(`${QUOTE_BASE_API_URL}`);
 		quote = response.data[0];
 		
