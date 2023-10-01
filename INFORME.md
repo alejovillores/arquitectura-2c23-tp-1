@@ -100,3 +100,21 @@ Esta estrategia de caché "lazy" nos permite optimizar el rendimiento al reducir
 <img width="950" alt="spacenews-base-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/6d847662-573e-49af-bd9a-e7c175e005dc">
 <img width="936" alt="spacenews-base-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fb7aaf60-d514-4f41-b019-012be3740b54">
 <img width="941" alt="spacenews-base-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/799bcc7a-7c64-4bcc-965a-ed2d213fc23a">
+
+### Caché
+Obtenemos las métricas de los endpoints en los cuales aplicamos la táctica de Caching. Estos son: /metar, /quote y /spaceflight_news.
+
+#### Metar
+<img width="942" alt="metar-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/1b848e90-6909-45e8-806e-9f3e76592b78">
+<img width="938" alt="metar-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/a35d37b0-7fa4-4d65-afdf-de3fd535326e">
+<img width="947" alt="metar-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/e2ac2b5d-5b7b-4c1d-a6f7-bee59e68bd40">
+
+#### Quote
+<img width="944" alt="quote-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/82456334-02f8-4868-862e-f38c856ab69c">
+<img width="941" alt="quote-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/60efe400-2f7b-4289-ac59-829f74cb8792">
+<img width="938" alt="quote-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/241f15b7-8403-4426-b259-8d255c3ddbd1">
+
+#### Spaceflight News
+<img width="942" alt="space-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/6cf57e8f-3100-4331-8942-76591257fcd5">
+<img width="944" alt="space-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/60227ac1-8f3b-4153-8bec-567aa14fb572">
+<img width="943" alt="space-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/e47c594e-483c-45cc-9c50-24c1f0d00edb">
