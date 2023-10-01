@@ -96,4 +96,7 @@ Esta estrategia de caché "lazy" nos permite optimizar el rendimiento al reducir
 <img width="943" alt="quote-main-response-time" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/645fbbe5-d58a-4010-ba06-e9c142b85300">
 <img width="937" alt="quote-main-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/112eb6f7-4c17-4e93-9e6c-4ac56c86758b">
 
-
+#### Spaceflight News
+<img width="950" alt="spacenews-base-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/6d847662-573e-49af-bd9a-e7c175e005dc">
+<img width="936" alt="spacenews-base-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fb7aaf60-d514-4f41-b019-012be3740b54">
+<img width="941" alt="spacenews-base-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/799bcc7a-7c64-4bcc-965a-ed2d213fc23a">
