@@ -14,14 +14,18 @@ config:
     - name: Ramp
       duration: 30
       arrivalRate: 1
-      rampTo: 5
+      rampTo: 20
     - name: Plain
       duration: 60
-      arrivalRate: 5
+      arrivalRate: 20
+    - name: Cool Down
+      duration: 30
+      arrivalRate: 20
+      rampTo: 1
+      
     
-
 scenarios:
-  - name: Root (/)
+  - name: Ping
     flow:
       - get:
-          url: '/'
+          url: '/ping'
