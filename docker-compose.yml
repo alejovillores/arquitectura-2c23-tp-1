@@ -5,6 +5,7 @@ services:
         build: ./app
         links:
             - redis
+    
     redis:
         image: redis:7
         

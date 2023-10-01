@@ -21,7 +21,7 @@ app.get('/ping', (_, res) => {
 });
 
 /*
-  metar service 
+	Metar service 
 */
 app.get('/metar', async (req, res) => {
 	try {
@@ -45,7 +45,7 @@ app.get('/metar', async (req, res) => {
 });
 
 /*
-  spaceflight_news service 
+	Spaceflight News Service 
 */
 app.get('/spaceflight_news', async (_, res) => {
 	try {
@@ -60,7 +60,7 @@ app.get('/spaceflight_news', async (_, res) => {
 });
 
 /*
-  quotes service 
+	Quotes Service 
 */
 app.get('/quote', async (_, res) => {
 	try {
