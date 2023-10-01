@@ -130,3 +130,10 @@ Estos son: `/metar`, `/quote` y `/spaceflight_news`.
 ### Rate limiting
 
 Dado que el rate limiting afecta a todos los puntos finales por igual, realizar pruebas en el punto final `/ping` es suficiente para evaluar su comportamiento y verificar si el servidor se comporta según lo esperado.
+
+#### Ping
+<img width="942" alt="ping-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/38f0cc95-2f86-4b8e-a150-caa97b30a38a">
+<img width="943" alt="ping-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/0f5810a6-f3ee-415f-ab43-031b26d91dbc">
+<img width="944" alt="ping-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/b0364916-2fc0-4de7-a0d7-aa3174a0121e">
+<img width="492" alt="ping-4" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/bb34b17a-4017-490c-ad6a-94c349ead1fe">
+
