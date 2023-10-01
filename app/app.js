@@ -173,7 +173,7 @@ app.get('/quote', async (_, res) => {
 			res.status(HTTP_500).send('Internal Server Error');
 		}
 	} else {
-		console.log('Qoutes saved in memory');
+		console.log('Quotes saved in memory');
 		let offset = parseInt(qouteOffset);
 		let quote = qoutesSaved.quotes[offset - 1];
 		await client.set('quotes-offset', offset + 1);

@@ -11,7 +11,7 @@ const SPACEFLIGHT_API_URL =
 	'https://api.spaceflightnewsapi.net/v4/articles/?limit=';
 
 const LIMIT = 5;
-const SPACEFLIGHT_TOLERANCE = 30; // 30 secs
+const SPACEFLIGHT_TOLERANCE = 5; // 5 secs
 
 const METAR_BASE_API_URL =
 	'https://www.aviationweather.gov/adds/dataserver_current/httpparam';
