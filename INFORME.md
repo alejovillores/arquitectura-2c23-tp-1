@@ -126,3 +126,7 @@ Estos son: `/metar`, `/quote` y `/spaceflight_news`.
 <img width="942" alt="space-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/6cf57e8f-3100-4331-8942-76591257fcd5">
 <img width="944" alt="space-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/60227ac1-8f3b-4153-8bec-567aa14fb572">
 <img width="943" alt="space-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/e47c594e-483c-45cc-9c50-24c1f0d00edb">
+
+### Rate limiting
+
+Dado que el rate limiting afecta a todos los puntos finales por igual, realizar pruebas en el punto final `/ping` es suficiente para evaluar su comportamiento y verificar si el servidor se comporta según lo esperado.
