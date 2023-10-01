@@ -80,8 +80,14 @@ Esta estrategia de caché "lazy" nos permite optimizar el rendimiento al reducir
 
 ## Métricas
 
+Dado que el trabajo práctico aborda diversos casos, se han definido diversas métricas para evaluar cómo responde la API a diferentes volúmenes de solicitudes. Para lograr esto, se llevaron a cabo distintos escenarios y se obtuvieron métricas que serán analizadas posteriormente.
+
 ### Caso Base
+
+Este es el escenario principal, en el cual no se ha aplicado ninguna técnica para mejorar el rendimiento o la seguridad.
+
 #### Ping
+
 <img width="952" alt="ping-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/eaec1f8a-53c2-4b29-b4b5-fbc72fd2747f">
 <img width="941" alt="ping-main-response-time" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/8dbf07ae-0d92-4a14-9e70-7b221355342f">
 <img width="948" alt="ping-main-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fe7fea80-1c79-4370-a588-4b12a860d474">
@@ -102,7 +108,9 @@ Esta estrategia de caché "lazy" nos permite optimizar el rendimiento al reducir
 <img width="941" alt="spacenews-base-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/799bcc7a-7c64-4bcc-965a-ed2d213fc23a">
 
 ### Caché
-Obtenemos las métricas de los endpoints en los cuales aplicamos la táctica de Caching. Estos son: /metar, /quote y /spaceflight_news.
+
+Recopilamos las métricas de los puntos finales en los que hemos implementado la estrategia de almacenamiento en caché.\
+Estos son: `/metar`, `/quote` y `/spaceflight_news`.
 
 #### Metar
 <img width="942" alt="metar-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/1b848e90-6909-45e8-806e-9f3e76592b78">
