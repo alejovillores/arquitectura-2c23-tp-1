@@ -82,12 +82,20 @@ Esta estrategia de caché "lazy" nos permite optimizar el rendimiento al reducir
 
 Dado que el trabajo práctico aborda diversos casos, se han definido diversas métricas para evaluar cómo responde la API a diferentes volúmenes de solicitudes. Para lograr esto, se llevaron a cabo distintos escenarios y se obtuvieron métricas que serán analizadas posteriormente.
 
+Los endpoints de nuestra API tienen una performance variada. Desde ya, el llamado a PING es mucho más performante que el llamado a METAR, por ejemplo, porque este último necesita hacer un request a una API externa. Además, cada una de las APIs externas tienen sus restricciones características. Es por esto que definimos para cada endpoint PING, QUOTE, METAR Y SPACEFLIGHT NEWS, un archivo de configuración del test de Artillery diferente.
+
+Todos los archivos de configuración tienen una estructura similar, con intervalos de igual tiempo, pero con un arrivalRate distinto según la performance de cada endpoint.
+
+Todos los tests tienen 4 fases principales. Una primera fase que aumenta la cantidad de requests por segundo hasta un valor bajo. Luego, se mantienen las consultas por 30 segundos a ese rate. A continuación se vuelve a agregar carga hasta llegar a un valor que exige a la aplicación. Se conserva este valor por otros 30 segundos.
+Agregamos una última fase de pocos segundos para hacer un cool down de los requests, de tal modo que se pueda visualizar el escenario de prueba. 
+
+A continuación mostramos los resultados obtenidos de cada uno de los endpoints definidos diferenciados por la táctica utilizada. 
+
 ### Caso Base
 
 Este es el escenario principal, en el cual no se ha aplicado ninguna técnica para mejorar el rendimiento o la seguridad.
 
 #### Ping
-
 <img width="952" alt="ping-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/eaec1f8a-53c2-4b29-b4b5-fbc72fd2747f">
 <img width="941" alt="ping-main-response-time" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/8dbf07ae-0d92-4a14-9e70-7b221355342f">
 <img width="948" alt="ping-main-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fe7fea80-1c79-4370-a588-4b12a860d474">
