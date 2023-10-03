@@ -13,24 +13,24 @@ config:
   phases:
       - duration: 30
         arrivalRate: 1
-        rampTo: 5
+        rampTo: 20
         name: Warm up phase
-      - duration: 60
-        arrivalRate: 5
-        name: Plain 5
       - duration: 30
-        arrivalRate: 5
-        rampTo: 10
+        arrivalRate: 20
+        name: Plain 20
+      - duration: 30
+        arrivalRate: 20
+        rampTo: 25
         name: Ramp up load
-      - duration: 60
-        arrivalRate: 10
-        name: Plain 10
       - duration: 30
-        arrivalCount: 3
+        arrivalRate: 25
+        name: Plain 25
+      - duration: 30
+        arrivalCount: 5
         name: Cool down
 
 scenarios:
-  - name: Ping
+  - name: Spaceflight News
     flow:
       - get:
-          url: '/ping'
+          url: '/spaceflight_news'

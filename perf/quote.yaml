@@ -13,24 +13,24 @@ config:
   phases:
       - duration: 30
         arrivalRate: 1
-        rampTo: 5
+        rampTo: 3
         name: Warm up phase
+      - duration: 60
+        arrivalRate: 3
+        name: Plain 3
+      - duration: 30
+        arrivalRate: 3
+        rampTo: 5
+        name: Ramp up load
       - duration: 60
         arrivalRate: 5
         name: Plain 5
-      - duration: 30
-        arrivalRate: 5
-        rampTo: 10
-        name: Ramp up load
-      - duration: 60
-        arrivalRate: 10
-        name: Plain 10
-      - duration: 30
-        arrivalCount: 3
+      - duration: 50
+        arrivalCount: 5
         name: Cool down
 
 scenarios:
-  - name: Ping
+  - name: Quote
     flow:
       - get:
-          url: '/ping'
+          url: '/quote'
