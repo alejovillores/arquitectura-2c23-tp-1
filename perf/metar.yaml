@@ -1,0 +1,44 @@
+config:
+  environments:
+    api:
+      target: 'http://localhost:5555/api'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-api"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - duration: 30
+      arrivalRate: 1
+      rampTo: 3
+      name: Warm up phase
+    - duration: 60
+      arrivalRate: 3
+      name: Plain 3
+    - duration: 30
+      arrivalRate: 3
+      rampTo: 5
+      name: Ramp up load
+    - duration: 60
+      arrivalRate: 5
+      name: Plain 5
+    - duration: 50
+      arrivalCount: 5
+      name: Cool down
+  variables:
+    station:
+      - 'SAEZ'
+      - 'SBGR'
+      - 'OMDB'
+
+scenarios:
+  - name: Metar
+    flow:
+      - get:
+          url: '/metar'
+          qs:
+            station: '{{ station }}'
+
