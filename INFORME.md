@@ -98,9 +98,7 @@ A continuación mostramos los resultados obtenidos de cada uno de los endpoints 
 Este es el escenario principal, en el cual no se ha aplicado ninguna técnica para mejorar el rendimiento o la seguridad.
 
 #### Ping
-<img width="952" alt="ping-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/eaec1f8a-53c2-4b29-b4b5-fbc72fd2747f">
-<img width="941" alt="ping-main-response-time" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/8dbf07ae-0d92-4a14-9e70-7b221355342f">
-<img width="948" alt="ping-main-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fe7fea80-1c79-4370-a588-4b12a860d474">
+<img width="952" alt="ping-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/ping.png">
 
 #### Metar
 <img width="936" alt="metar-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fc913d6e-3ef6-43d5-b824-72c9fcce2e16">
