@@ -101,19 +101,19 @@ Este es el escenario principal, en el cual no se ha aplicado ninguna técnica pa
 <img width="952" alt="ping-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/ping.png">
 
 #### Metar
-<img width="936" alt="metar-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fc913d6e-3ef6-43d5-b824-72c9fcce2e16">
-<img width="939" alt="metar-response-time-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/a9beedfe-6d00-46a7-8ee5-efe3c7450669">
-<img width="946" alt="metar-resources-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/4d970b48-0ad3-4bef-96ef-887ed0cca11b">
+<img width="936" alt="metar-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/metar.png">
+<img width="939" alt="metar-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/metar-m.png">
+
 
 #### Quote
-<img width="945" alt="quote-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/4497f1af-667d-47d4-ba79-76e36e3c228e">
-<img width="943" alt="quote-main-response-time" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/645fbbe5-d58a-4010-ba06-e9c142b85300">
-<img width="937" alt="quote-main-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/112eb6f7-4c17-4e93-9e6c-4ac56c86758b">
+<img width="945" alt="quote-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/quote-13-sobre-259-http500.png">
+<img width="943" alt="quote-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/quote-m.png">
+
 
 #### Spaceflight News
-<img width="950" alt="spacenews-base-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/6d847662-573e-49af-bd9a-e7c175e005dc">
-<img width="936" alt="spacenews-base-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fb7aaf60-d514-4f41-b019-012be3740b54">
-<img width="941" alt="spacenews-base-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/799bcc7a-7c64-4bcc-965a-ed2d213fc23a">
+<img width="950" alt="spacenews-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/space-41-con-http500-148-con-timeout-sobre-866.png">
+<img width="936" alt="spacenews-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/space-m.png">
+
 
 ### Caché
 
