@@ -13,6 +13,8 @@
 2. Ejecutar `docker-compose stop` para detener la ejecución de los contenedores.
 3. Ejecutar `docker-compose down [-v]` para remover los contenedores, la red y si el flag ``-v`` se encuentra, borra los volumenes creados.
 
+### Importante! 
+> **Recuerde que cada vez que cambie de rama, al levantar el docker, debe hacerlo utilizando el  flag `--build ` para poder construir el contenedor acorde a la branch**
 
 ## Tácticas
 
