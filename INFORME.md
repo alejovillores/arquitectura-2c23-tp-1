@@ -121,27 +121,49 @@ Recopilamos las métricas de los puntos finales en los que hemos implementado la
 Estos son: `/metar`, `/quote` y `/spaceflight_news`.
 
 #### Metar
-<img width="942" alt="metar-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/1b848e90-6909-45e8-806e-9f3e76592b78">
-<img width="938" alt="metar-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/a35d37b0-7fa4-4d65-afdf-de3fd535326e">
-<img width="947" alt="metar-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/e2ac2b5d-5b7b-4c1d-a6f7-bee59e68bd40">
+<img width="942" alt="metar-main-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/metar.png">
+<img width="938" alt="metar-resources-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/metar-res.png">
+
 
 #### Quote
-<img width="944" alt="quote-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/82456334-02f8-4868-862e-f38c856ab69c">
-<img width="941" alt="quote-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/60efe400-2f7b-4289-ac59-829f74cb8792">
-<img width="938" alt="quote-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/241f15b7-8403-4426-b259-8d255c3ddbd1">
+<img width="944" alt="quote-main-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/quote.png">
+<img width="941" alt="quote-resources-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/quote-res.png">
 
 #### Spaceflight News
-<img width="942" alt="space-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/6cf57e8f-3100-4331-8942-76591257fcd5">
-<img width="944" alt="space-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/60227ac1-8f3b-4153-8bec-567aa14fb572">
-<img width="943" alt="space-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/e47c594e-483c-45cc-9c50-24c1f0d00edb">
+<img width="942" alt="space-main-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/space.png">
+<img width="944" alt="space-resources-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/space.res.png">
 
 ### Rate limiting
 
-Dado que el rate limiting afecta a todos los puntos finales por igual, realizar pruebas en el punto final `/ping` es suficiente para evaluar su comportamiento y verificar si el servidor se comporta según lo esperado.
+#### Ping
+<img width="942" alt="ping-main-rateLimit" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/rate_limit/ping.png">
+
+#### Metar
+<img width="942" alt="metar-main-rateLimit" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/rate_limit/metar-98req-con-400-sobre-263.png">
+
+#### Quote
+<img width="944" alt="quote-main-rateLimit" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/rate_limit/quote-29HTTP500-7Timeout-sobre-266req.png">
+
+#### Spaceflight News
+<img width="942" alt="space-main-rateLimit" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/rate_limit/space-221HTTP503-sobre-852req.png">
+
+
+### Load Balancer
 
 #### Ping
-<img width="942" alt="ping-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/38f0cc95-2f86-4b8e-a150-caa97b30a38a">
-<img width="943" alt="ping-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/0f5810a6-f3ee-415f-ab43-031b26d91dbc">
-<img width="944" alt="ping-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/b0364916-2fc0-4de7-a0d7-aa3174a0121e">
-<img width="492" alt="ping-4" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/bb34b17a-4017-490c-ad6a-94c349ead1fe">
+<img width="942" alt="ping-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/ping.jpeg">
+<img width="942" alt="ping-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/ping-mem.jpeg">
 
+
+#### Metar
+<img width="942" alt="metar-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/metar.jpeg">
+<img width="942" alt="metar-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/metar-m.jpeg">
+
+#### Quote
+<img width="944" alt="quote-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/quote-22-sobre-239-paquetes-caidos-http500.jpeg">
+<img width="944" alt="quote-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/quote-m.jpeg">
+
+
+#### Spaceflight News
+<img width="942" alt="space-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/space-38-TIMEOUT-809OK.jpeg">
+<img width="942" alt="space-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/space-m.jpeg">
