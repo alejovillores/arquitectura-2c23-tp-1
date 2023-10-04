@@ -98,22 +98,38 @@ A continuación mostramos los resultados obtenidos de cada uno de los endpoints 
 Este es el escenario principal, en el cual no se ha aplicado ninguna técnica para mejorar el rendimiento o la seguridad.
 
 #### Ping
+
+Se puede observar como varían las diferentes etapas del escenario correspondiente en el que todas las peticiones son procesadas de manera satisfactoria con un máximo de 100 solicitudes
+
 <img width="952" alt="ping-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/ping.png">
 
+A su vez, se puede ver que el Response Time tiene una media de 13 ms y un valor máximo de 98.5ms
+
 #### Metar
+
+En el caso base del endpoint metar, se puede observar que todas las peticiones son procesadas de manera satisfactoria con un máximo de 50 solicitudes
+
 <img width="936" alt="metar-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/metar.png">
 <img width="939" alt="metar-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/metar-m.png">
 
+A su vez, se puede ver que el Response Time tiene una media de 94.1 ms y un valor máximo de 552ms
 
 #### Quote
+En el caso base del endpoint quote, se puede observar que todas las peticiones son procesadas de manera satisfactoria con un máximo de 50 solicitudes
+
 <img width="945" alt="quote-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/quote-13-sobre-259-http500.png">
 <img width="943" alt="quote-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/quote-m.png">
 
+A su vez, se puede ver que el Response Time tiene una media de 617ms y un valor máximo de 1.8s
 
 #### Spaceflight News
+
+En el caso base del endpoint Spaceflight News, se puede observar un maximo de 250 solicitudes. En este endpoint podemos observar que hubieron varios errores que corresponden a errores 500 por parte del servidor y errores por timeout.
+
 <img width="950" alt="spacenews-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/space-41-con-http500-148-con-timeout-sobre-866.png">
 <img width="936" alt="spacenews-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/space-m.png">
 
+A su vez, se puede ver que el Response Time tiene una media de 3.26s y un valor máximo de 9.81s
 
 ### Caché
 
