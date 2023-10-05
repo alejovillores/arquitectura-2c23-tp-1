@@ -123,6 +123,8 @@ A su vez, se puede ver que el Response Time tiene una media de 94.1 ms y un valo
 #### Quote
 En el caso base del endpoint quote, se puede observar que todas las peticiones son procesadas de manera satisfactoria con un máximo de 50 solicitudes
 
+Tuvimos un numero de requests con reponses `HTTP 500` de unas 13/259 desde las ejecuciones de artillery.
+
 <img width="945" alt="quote-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/quote-13-sobre-259-http500.png">
 <img width="943" alt="quote-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/quote-m.png">
 
@@ -131,6 +133,8 @@ A su vez, se puede ver que el Response Time tiene una media de 617ms y un valor 
 #### Spaceflight News
 
 En el caso base del endpoint Spaceflight News, se puede observar un maximo de 250 solicitudes. En este endpoint podemos observar que hubieron varios errores que corresponden a errores 500 por parte del servidor y errores por timeout.
+
+Tuvimos un numero con reponses `HTTP 500` de unas 41 requests y 138 con timeout como se puede ver en el grafico, todo sobre 866 desde las ejecuciones de artillery.
 
 <img width="950" alt="spacenews-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/space-41-con-http500-148-con-timeout-sobre-866.png">
 <img width="936" alt="spacenews-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/space-m.png">
