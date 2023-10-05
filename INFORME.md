@@ -101,7 +101,7 @@ Este es el escenario principal, en el cual no se ha aplicado ninguna técnica pa
 
 <img width="455" alt="image" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/8fce4ac9-b3ee-4b5d-9c79-f9e41bc532c9">
 
-El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia al servidor Node. Dependiendo de qué tipo de solicitud recibe este servidor, consulta o no a las apis externas.
+El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia al servidor Node. Dependiendo de qué tipo de solicitud recibe este servidor, consulta o no a las apis externas. Las métricas obtenidas a partir del load test realizado con Artillery se almancenan en la base de datos de Graphite.
 
 #### Ping
 
@@ -171,6 +171,12 @@ Estos son: `/metar`, `/quote` y `/spaceflight_news`.
 
 
 ### Load Balancer
+
+**Vista Components & Connectors**
+
+<img width="361" alt="image" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fe4b4a62-83d4-4ca6-9c00-381e9426194b">
+
+El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia a una de las 3 instancias que hay del servidor Node. Dependiendo de qué tipo de solicitud recibe cada servidor Node, consulta o no a las apis externas. Las métricas obtenidas a partir del load test realizado con Artillery se almancenan en la base de datos de Graphite.
 
 #### Ping
 <img width="942" alt="ping-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/ping.jpeg">
