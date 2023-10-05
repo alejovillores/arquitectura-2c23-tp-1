@@ -204,7 +204,7 @@ El load balancer recibe solicitudes, por medio de Artillery o de un navegador we
 <img width="942" alt="space-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/space-38-TIMEOUT-809OK.jpeg">
 <img width="942" alt="space-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/space-m.jpeg">
 
-## Duraciones entre las Apis y
+## Response time Api Gateway vs Api
 
 ### Todas
 <img width="942" alt="space-resources-durations" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/api-durations/all.png">
@@ -213,7 +213,7 @@ El load balancer recibe solicitudes, por medio de Artillery o de un navegador we
 <img width="942" alt="meta-resources-durations" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/api-durations/metar.png">
 
 ### Quote
-<img width="942" alt="qoute-resources-durations" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/api-durations/qoute.png">
+<img width="942" alt="qoute-resources-durations" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/api-durations/quote.png">
 
 ### Spaceflight News
 <img width="942" alt="space-resources-durations" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/api-durations/spaceflight_news.png">
