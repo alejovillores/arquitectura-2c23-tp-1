@@ -154,6 +154,8 @@ El load balancer recibe solicitudes, por medio de Artillery o de un navegador we
 
 Es interesante notar que al principio se puede ver un pico de requests y luego el response time baja considerablemente dado el la intervencion del cache.
 
+A diferencia del caso base, usando caching notamos que no hubo responses con codigo de error.
+
 #### Metar
 <img width="942" alt="metar-main-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/metar.png">
 <img width="938" alt="metar-resources-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/metar-res.png">
