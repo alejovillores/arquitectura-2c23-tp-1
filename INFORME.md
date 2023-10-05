@@ -152,6 +152,8 @@ Estos son: `/metar`, `/quote` y `/spaceflight_news`.
 
 El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia al servidor Node. Dependiendo de qué tipo de solicitud recibe este servidor, consulta o no a las apis externas y guarda la respuesta a la consulta en la base de datos en memoria de Redis. Las métricas obtenidas a partir del load test realizado con Artillery se almancenan en la base de datos de Graphite.
 
+Es interesante notar que al principio se puede ver un pico de requests y luego el response time baja considerablemente dado el la intervencion del cache.
+
 #### Metar
 <img width="942" alt="metar-main-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/metar.png">
 <img width="938" alt="metar-resources-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/metar-res.png">
