@@ -3,7 +3,7 @@ const axios = require('axios');
 const { XMLParser } = require('fast-xml-parser');
 const { decode } = require('metar-decoder');
 const app = express();
-const StatsD = require('node-statsd');
+const StatsD = require('hot-shots')
 const { performance } = require('perf_hooks');
 const {
     HTTP_200,
@@ -15,7 +15,7 @@ const {
     QUOTE_BASE_API_URL,
 } = require('./constants');
 
-statsd_client = new StatsD({
+const statsd_client = new StatsD({
     "host": "graphite",
     "port": 8125,
 });
@@ -28,9 +28,9 @@ app.get('/ping', (_, res) => {
     const start = performance.now();
     console.log('Get Ping Request')
     res.status(HTTP_200).send("I'm alive!");
-    const end = performance.now();
-    const elapsed = end - start;
-    statsd_client.timing('ping.response_time', elapsed);
+    const elapsed = performance.now() - start;
+    // Usamos Gauge porque timing no nos anduvo.
+    statsd_client.gauge('response_time.api.ping', elapsed);
 });
 
 /*
@@ -45,7 +45,7 @@ app.get('/metar', async (req, res) => {
         const response = await axios.get(
             `${METAR_BASE_API_URL}?dataSource=metars&requestType=retrieve&format=xml&stationString=${station}&hoursBeforeNow=1`
         );
-        statsd_client.timing('metar.ext.response_time', performance.now() - ext_start);
+        const elapsed_ext = performance.now() - ext_start
         const parser = new XMLParser();
         const parsed = parser.parse(response.data);
         if (!parsed?.response?.data?.METAR?.raw_text) {
@@ -53,13 +53,14 @@ app.get('/metar', async (req, res) => {
         } else {
             const metar = decode(parsed.response.data.METAR.raw_text);
             res.status(HTTP_200).send(metar);
+            const elapsed = performance.now() - start;
+            statsd_client.gauge('response_time.ext.metar', elapsed_ext);
+            statsd_client.gauge('response_time.api.metar', elapsed);
         }
     } catch (err) {
         console.error(err);
         res.status(HTTP_500).send('Internal Server Error');
     }
-    const elapsed = performance.now() - start;
-    statsd_client.timing('metar.response_time', elapsed);
 });
 
 /*
@@ -71,16 +72,17 @@ app.get('/spaceflight_news', async (_, res) => {
         console.log('Get Spaceflight News Request')
         const ext_start = performance.now();
         const response = await axios.get(`${SPACEFLIGHT_API_URL}${LIMIT}`);
-        statsd_client.timing('spaceflight_news.ext.response_time', performance.now() - ext_start);
+        const elapsed_ext = performance.now() - ext_start;
         
         news = response.data.results.map((article) => article.title);
         res.status(HTTP_200).send(news);
+        const elapsed = performance.now() - start;
+        statsd_client.gauge('response_time.ext.spaceflight_news', elapsed_ext);
+        statsd_client.gauge('response_time.api.spaceflight_news', elapsed);
     } catch (err) {
         console.error(err);
         res.status(HTTP_500).send('Internal Server Error');
     }
-    const elapsed = performance.now() - start;
-    statsd_client.timing('spaceflight_news.response_time', elapsed);
 });
 
 /*
@@ -92,17 +94,17 @@ app.get('/quote', async (_, res) => {
         console.log('Get Quote Request')
         const ext_start = performance.now();
         const response = await axios.get(`${QUOTE_BASE_API_URL}`);
-        statsd_client.timing('quote.ext.response_time', performance.now() - ext_start);
-
+        const elapsed_ext = performance.now() - ext_start
         quote = response.data[0];
         
         res.status(HTTP_200).send({"quote": quote.content,"author": quote.author});
+        const elapsed = performance.now() - start;
+        statsd_client.gauge('response_time.ext.quote', elapsed_ext);
+        statsd_client.gauge('response_time.api.quote', elapsed);
     } catch (err) {
         console.error(err);
         res.status(HTTP_500).send('Internal Server Error');
     }
-    const elapsed = performance.now() - start;
-    statsd_client.timing('quote.response_time', elapsed);
 });
 
 const port = 3000;
