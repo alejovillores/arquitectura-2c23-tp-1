@@ -162,6 +162,10 @@ El load balancer recibe solicitudes, por medio de Artillery o de un navegador we
 
 ### Rate limiting
 
+Las metricas de Rate limiting se corrieron utilizando un internet publico, a diferencia de las demas metricas que fueron realizadas dentro de un internet de hogar. Esto pudo haber afectado un poco los resultados obtenidos.
+
+Donde mas se noto el efecto del `rate-limiting` fue en el endpoint `/spaceflight_news` en el que todoso los requests fallidos fueron por un `503` retornados por nginx.
+
 **Vista Components & Connectors**
 
 <img width="455" alt="image" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/8fce4ac9-b3ee-4b5d-9c79-f9e41bc532c9">
@@ -172,6 +176,11 @@ Es la misma vista que la del caso base: El load balancer recibe solicitudes, por
 <img width="942" alt="ping-main-rateLimit" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/rate_limit/ping.png">
 
 #### Metar
+
+Se obtuvieron 98/263 requests con status code `400`. Estas requests fallidas se deben a que una estacion de las probadas aquel dia no poseia datos. Los resultados obtenidos dan de manera similar a los del caso base.
+
+La mediana bajo 100 ms con respecto al caso base aunque esto puede deberse a estos requests fallidos ya que afectan a la metrica.
+
 <img width="942" alt="metar-main-rateLimit" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/rate_limit/metar-98req-con-400-sobre-263.png">
 
 #### Quote
@@ -189,10 +198,18 @@ Es la misma vista que la del caso base: El load balancer recibe solicitudes, por
 El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia a una de las 3 instancias que hay del servidor Node. Dependiendo de qué tipo de solicitud recibe cada servidor Node, consulta o no a las apis externas. Las métricas obtenidas a partir del load test realizado con Artillery se almancenan en la base de datos de Graphite.
 
 #### Ping
+
+Las metricas con respecto al caso base, para `/ping` no muestran diferencia.
+
 <img width="942" alt="ping-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/ping.jpeg">
 <img width="942" alt="ping-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/ping-mem.jpeg">
 
 #### Metar
+
+El response time respecto al caso base se mantiene de manera mucho constante a diferencia que el caso base posee picos.
+
+El uso de CPU en cada nodo baja un 3% respecto del caso base.
+
 <img width="942" alt="metar-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/metar.jpeg">
 <img width="942" alt="metar-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/metar-m.jpeg">
 
@@ -205,6 +222,11 @@ El load balancer recibe solicitudes, por medio de Artillery o de un navegador we
 <img width="942" alt="space-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/space-m.jpeg">
 
 ## Response time Api Gateway vs Api en caso base
+
+Para poder obtener las siguientes metricas, lo que se midio fue la demora en cada endpoint en responder y la demora en cada api remota en responder.
+
+**Aclaracion**: Idealmente tendriamos que haber usado el método timing de statsd pero el mismo enviaba metricas a Graphite. Es por esto que utilizamos el método **gauge**.\
+Este método almacena la ultima metrica obtenida en el intervalo (10sec). Solamente se envian resultados a graphite cuando el request es procesado de manera exitosa (status code 200). Esto es asi para evitar ruido al medir.
 
 ### Todas
 <img width="942" alt="space-resources-durations" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/api-durations/all.png">
