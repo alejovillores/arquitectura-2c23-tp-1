@@ -97,53 +97,109 @@ A continuación mostramos los resultados obtenidos de cada uno de los endpoints 
 
 Este es el escenario principal, en el cual no se ha aplicado ninguna técnica para mejorar el rendimiento o la seguridad.
 
+**Vista Components & Connectors**
+
+<img width="455" alt="image" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/8fce4ac9-b3ee-4b5d-9c79-f9e41bc532c9">
+
+El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia al servidor Node. Dependiendo de qué tipo de solicitud recibe este servidor, consulta o no a las apis externas. Las métricas obtenidas a partir del load test realizado con Artillery se almancenan en la base de datos de Graphite.
+
 #### Ping
-<img width="952" alt="ping-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/eaec1f8a-53c2-4b29-b4b5-fbc72fd2747f">
-<img width="941" alt="ping-main-response-time" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/8dbf07ae-0d92-4a14-9e70-7b221355342f">
-<img width="948" alt="ping-main-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fe7fea80-1c79-4370-a588-4b12a860d474">
+
+Se puede observar como varían las diferentes etapas del escenario correspondiente en el que todas las peticiones son procesadas de manera satisfactoria con un máximo de 100 solicitudes
+
+<img width="952" alt="ping-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/ping.png">
+
+A su vez, se puede ver que el Response Time tiene una media de 13 ms y un valor máximo de 98.5ms
 
 #### Metar
-<img width="936" alt="metar-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fc913d6e-3ef6-43d5-b824-72c9fcce2e16">
-<img width="939" alt="metar-response-time-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/a9beedfe-6d00-46a7-8ee5-efe3c7450669">
-<img width="946" alt="metar-resources-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/4d970b48-0ad3-4bef-96ef-887ed0cca11b">
+
+En el caso base del endpoint metar, se puede observar que todas las peticiones son procesadas de manera satisfactoria con un máximo de 50 solicitudes
+
+<img width="936" alt="metar-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/metar.png">
+<img width="939" alt="metar-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/metar-m.png">
+
+A su vez, se puede ver que el Response Time tiene una media de 94.1 ms y un valor máximo de 552ms
 
 #### Quote
-<img width="945" alt="quote-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/4497f1af-667d-47d4-ba79-76e36e3c228e">
-<img width="943" alt="quote-main-response-time" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/645fbbe5-d58a-4010-ba06-e9c142b85300">
-<img width="937" alt="quote-main-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/112eb6f7-4c17-4e93-9e6c-4ac56c86758b">
+En el caso base del endpoint quote, se puede observar que todas las peticiones son procesadas de manera satisfactoria con un máximo de 50 solicitudes
+
+<img width="945" alt="quote-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/quote-13-sobre-259-http500.png">
+<img width="943" alt="quote-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/quote-m.png">
+
+A su vez, se puede ver que el Response Time tiene una media de 617ms y un valor máximo de 1.8s
 
 #### Spaceflight News
-<img width="950" alt="spacenews-base-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/6d847662-573e-49af-bd9a-e7c175e005dc">
-<img width="936" alt="spacenews-base-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fb7aaf60-d514-4f41-b019-012be3740b54">
-<img width="941" alt="spacenews-base-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/799bcc7a-7c64-4bcc-965a-ed2d213fc23a">
+
+En el caso base del endpoint Spaceflight News, se puede observar un maximo de 250 solicitudes. En este endpoint podemos observar que hubieron varios errores que corresponden a errores 500 por parte del servidor y errores por timeout.
+
+<img width="950" alt="spacenews-main" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/space-41-con-http500-148-con-timeout-sobre-866.png">
+<img width="936" alt="spacenews-resources" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-basic/space-m.png">
+
+A su vez, se puede ver que el Response Time tiene una media de 3.26s y un valor máximo de 9.81s
 
 ### Caché
 
 Recopilamos las métricas de los puntos finales en los que hemos implementado la estrategia de almacenamiento en caché.\
 Estos son: `/metar`, `/quote` y `/spaceflight_news`.
 
+**Vista Components & Connectors**
+
+<img width="383" alt="image" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/a36d2f46-7268-4ad7-b34e-96c3392cdc5e">
+
+El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia al servidor Node. Dependiendo de qué tipo de solicitud recibe este servidor, consulta o no a las apis externas y guarda la respuesta a la consulta en la base de datos en memoria de Redis. Las métricas obtenidas a partir del load test realizado con Artillery se almancenan en la base de datos de Graphite.
+
 #### Metar
-<img width="942" alt="metar-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/1b848e90-6909-45e8-806e-9f3e76592b78">
-<img width="938" alt="metar-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/a35d37b0-7fa4-4d65-afdf-de3fd535326e">
-<img width="947" alt="metar-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/e2ac2b5d-5b7b-4c1d-a6f7-bee59e68bd40">
+<img width="942" alt="metar-main-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/metar.png">
+<img width="938" alt="metar-resources-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/metar-res.png">
 
 #### Quote
-<img width="944" alt="quote-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/82456334-02f8-4868-862e-f38c856ab69c">
-<img width="941" alt="quote-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/60efe400-2f7b-4289-ac59-829f74cb8792">
-<img width="938" alt="quote-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/241f15b7-8403-4426-b259-8d255c3ddbd1">
+<img width="944" alt="quote-main-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/quote.png">
+<img width="941" alt="quote-resources-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/quote-res.png">
 
 #### Spaceflight News
-<img width="942" alt="space-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/6cf57e8f-3100-4331-8942-76591257fcd5">
-<img width="944" alt="space-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/60227ac1-8f3b-4153-8bec-567aa14fb572">
-<img width="943" alt="space-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/e47c594e-483c-45cc-9c50-24c1f0d00edb">
+<img width="942" alt="space-main-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/space.png">
+<img width="944" alt="space-resources-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/space.res.png">
 
 ### Rate limiting
 
-Dado que el rate limiting afecta a todos los puntos finales por igual, realizar pruebas en el punto final `/ping` es suficiente para evaluar su comportamiento y verificar si el servidor se comporta según lo esperado.
+**Vista Components & Connectors**
+
+<img width="455" alt="image" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/8fce4ac9-b3ee-4b5d-9c79-f9e41bc532c9">
+
+Es la misma vista que la del caso base: El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia al servidor Node. Dependiendo de qué tipo de solicitud recibe este servidor, consulta o no a las apis externas. Las métricas obtenidas a partir del load test realizado con Artillery se almancenan en la base de datos de Graphite.
 
 #### Ping
-<img width="942" alt="ping-1" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/38f0cc95-2f86-4b8e-a150-caa97b30a38a">
-<img width="943" alt="ping-2" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/0f5810a6-f3ee-415f-ab43-031b26d91dbc">
-<img width="944" alt="ping-3" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/b0364916-2fc0-4de7-a0d7-aa3174a0121e">
-<img width="492" alt="ping-4" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/bb34b17a-4017-490c-ad6a-94c349ead1fe">
+<img width="942" alt="ping-main-rateLimit" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/rate_limit/ping.png">
 
+#### Metar
+<img width="942" alt="metar-main-rateLimit" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/rate_limit/metar-98req-con-400-sobre-263.png">
+
+#### Quote
+<img width="944" alt="quote-main-rateLimit" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/rate_limit/quote-29HTTP500-7Timeout-sobre-266req.png">
+
+#### Spaceflight News
+<img width="942" alt="space-main-rateLimit" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/rate_limit/space-221HTTP503-sobre-852req.png">
+
+### Load Balancer
+
+**Vista Components & Connectors**
+
+<img width="361" alt="image" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/fe4b4a62-83d4-4ca6-9c00-381e9426194b">
+
+El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia a una de las 3 instancias que hay del servidor Node. Dependiendo de qué tipo de solicitud recibe cada servidor Node, consulta o no a las apis externas. Las métricas obtenidas a partir del load test realizado con Artillery se almancenan en la base de datos de Graphite.
+
+#### Ping
+<img width="942" alt="ping-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/ping.jpeg">
+<img width="942" alt="ping-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/ping-mem.jpeg">
+
+#### Metar
+<img width="942" alt="metar-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/metar.jpeg">
+<img width="942" alt="metar-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/metar-m.jpeg">
+
+#### Quote
+<img width="944" alt="quote-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/quote-22-sobre-239-paquetes-caidos-http500.jpeg">
+<img width="944" alt="quote-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/quote-m.jpeg">
+
+#### Spaceflight News
+<img width="942" alt="space-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/space-38-TIMEOUT-809OK.jpeg">
+<img width="942" alt="space-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/space-m.jpeg">
