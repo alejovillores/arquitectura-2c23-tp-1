@@ -146,12 +146,11 @@ Estos son: `/metar`, `/quote` y `/spaceflight_news`.
 
 <img width="383" alt="image" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/a36d2f46-7268-4ad7-b34e-96c3392cdc5e">
 
-El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia al servidor Node. Dependiendo de qué tipo de solicitud recibe este servidor, consulta o no a las apis externas y se guarda la respuesta a la consulta en la base de datos en memoria de Redis. Las métricas obtenidas a partir del load test realizado con Artillery se almancenan en la base de datos de Graphite.
+El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia al servidor Node. Dependiendo de qué tipo de solicitud recibe este servidor, consulta o no a las apis externas y guarda la respuesta a la consulta en la base de datos en memoria de Redis. Las métricas obtenidas a partir del load test realizado con Artillery se almancenan en la base de datos de Graphite.
 
 #### Metar
 <img width="942" alt="metar-main-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/metar.png">
 <img width="938" alt="metar-resources-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/metar-res.png">
-
 
 #### Quote
 <img width="944" alt="quote-main-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/quote.png">
@@ -162,6 +161,12 @@ El load balancer recibe solicitudes, por medio de Artillery o de un navegador we
 <img width="944" alt="space-resources-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/space.res.png">
 
 ### Rate limiting
+
+**Vista Components & Connectors**
+
+<img width="455" alt="image" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/8fce4ac9-b3ee-4b5d-9c79-f9e41bc532c9">
+
+Es la misma vista que la del caso base: El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia al servidor Node. Dependiendo de qué tipo de solicitud recibe este servidor, consulta o no a las apis externas. Las métricas obtenidas a partir del load test realizado con Artillery se almancenan en la base de datos de Graphite.
 
 #### Ping
 <img width="942" alt="ping-main-rateLimit" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/rate_limit/ping.png">
@@ -175,7 +180,6 @@ El load balancer recibe solicitudes, por medio de Artillery o de un navegador we
 #### Spaceflight News
 <img width="942" alt="space-main-rateLimit" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/rate_limit/space-221HTTP503-sobre-852req.png">
 
-
 ### Load Balancer
 
 **Vista Components & Connectors**
@@ -188,7 +192,6 @@ El load balancer recibe solicitudes, por medio de Artillery o de un navegador we
 <img width="942" alt="ping-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/ping.jpeg">
 <img width="942" alt="ping-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/ping-mem.jpeg">
 
-
 #### Metar
 <img width="942" alt="metar-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/metar.jpeg">
 <img width="942" alt="metar-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/metar-m.jpeg">
@@ -196,7 +199,6 @@ El load balancer recibe solicitudes, por medio de Artillery o de un navegador we
 #### Quote
 <img width="944" alt="quote-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/quote-22-sobre-239-paquetes-caidos-http500.jpeg">
 <img width="944" alt="quote-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/quote-m.jpeg">
-
 
 #### Spaceflight News
 <img width="942" alt="space-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/space-38-TIMEOUT-809OK.jpeg">
