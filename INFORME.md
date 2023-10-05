@@ -204,16 +204,25 @@ El load balancer recibe solicitudes, por medio de Artillery o de un navegador we
 <img width="942" alt="space-main-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/space-38-TIMEOUT-809OK.jpeg">
 <img width="942" alt="space-resources-loadBalancer" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-load-balancer/space-m.jpeg">
 
-## Response time Api Gateway vs Api
+## Response time Api Gateway vs Api en caso base
 
 ### Todas
 <img width="942" alt="space-resources-durations" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/api-durations/all.png">
 
 ### Metar
+
+En la imagen siguiente, se observa que los tiempos de respuesta de la API externa `/metar` parecen ser más rápidos en comparación con los tiempos de respuesta de la API interna. La diferencia más significativa se evidencia a las `15:17:00`, donde la discrepancia en milisegundos es aproximadamente de 10 ms.
+
 <img width="942" alt="meta-resources-durations" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/api-durations/metar.png">
 
 ### Quote
+
+Para el endpont de `/qoute` sucede algo similar, lo cual tiene total sentido que asi sea. Se puede ver que el response time de la api externa es menor que la api interna. Se ve que la mayor diferencia se da entre los minutos `15:21:15` y `15:21:45`
+
 <img width="942" alt="qoute-resources-durations" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/api-durations/quote.png">
 
 ### Spaceflight News
+
+Algo particular se dio con la ruta `/spaceflight_news` que no tuvo diferencia entre la api externa y la api interna.
+
 <img width="942" alt="space-resources-durations" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/api-durations/spaceflight_news.png">
