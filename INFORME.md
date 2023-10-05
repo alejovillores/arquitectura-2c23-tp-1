@@ -142,6 +142,12 @@ A su vez, se puede ver que el Response Time tiene una media de 3.26s y un valor 
 Recopilamos las métricas de los puntos finales en los que hemos implementado la estrategia de almacenamiento en caché.\
 Estos son: `/metar`, `/quote` y `/spaceflight_news`.
 
+**Vista Components & Connectors**
+
+<img width="383" alt="image" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/assets/67125933/a36d2f46-7268-4ad7-b34e-96c3392cdc5e">
+
+El load balancer recibe solicitudes, por medio de Artillery o de un navegador web, y se las envia al servidor Node. Dependiendo de qué tipo de solicitud recibe este servidor, consulta o no a las apis externas y se guarda la respuesta a la consulta en la base de datos en memoria de Redis. Las métricas obtenidas a partir del load test realizado con Artillery se almancenan en la base de datos de Graphite.
+
 #### Metar
 <img width="942" alt="metar-main-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/metar.png">
 <img width="938" alt="metar-resources-cache" src="https://github.com/alejovillores/arquitectura-2c23-tp-1/blob/main/results/resultados-cache/metar-res.png">
