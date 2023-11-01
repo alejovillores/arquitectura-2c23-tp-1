@@ -29,7 +29,7 @@ A partir de este repositorio como punto inicial, van a tener que implementar el 
 
 Para generar carga y ver las mediciones obtenidas, en la carpeta `perf/` tienen un dashboard de Grafana ya armado (`dashboard.json`) al que **deberán ajustar según las características de su equipo de pruebas (RAM, cores)** y un ejemplo de un escenario básico de Artillery (**deben** crear sus propios escenarios de manera apropiada para lo que estén probando). También hay un script y una configuración en el `package.json` para que puedan ejecutar los escenarios que hagan corriendo:
 
-```npm run scenario <filename> <env>```
+`npm run scenario <filename> <env>`
 
 donde `<filename>` es el nombre del archivo con el escenario (sin la extensión `.yaml`) y `<env>` es el entorno en el cual correrá la prueba (vean la sección `environments` dentro del yaml del escenario).
 
@@ -37,15 +37,15 @@ donde `<filename>` es el nombre del archivo con el escenario (sin la extensión 
 
 #### Ping
 
-*Endpoint*: `/ping`
+_Endpoint_: `/ping`
 
 Este servicio devolverá un valor constante, sin procesamiento. Lo utilizaremos como healthcheck y como baseline para comparar con los demás.
 
 #### METAR
 
-*Endpoint*: `/metar?station=<code>`
+_Endpoint_: `/metar?station=<code>`
 
-*Ejemplo*: `/metar?station=SAEZ` (para el Aeropuerto de Ezeiza)
+_Ejemplo_: `/metar?station=SAEZ` (para el Aeropuerto de Ezeiza)
 
 Un [METAR](http://www.bom.gov.au/aviation/data/education/metar-speci.pdf) es un reporte del estado meteorológico que se registra en un aeródromo. Se lo codifica en un string, por ejemplo:
 
@@ -86,7 +86,7 @@ decode(parsed.response.data.METAR.raw_text);
 
 #### Spaceflight News
 
-*Endpoint*: `/spaceflight_news`
+_Endpoint_: `/spaceflight_news`
 
 Devolveremos **solo los títulos** de las 5 últimas noticias sobre actividad espacial, obtenidas desde la [Spaceflight News API](https://spaceflightnewsapi.net/).
 
@@ -94,7 +94,7 @@ Ver [documentación de la API](https://api.spaceflightnewsapi.net/documentation)
 
 #### Random quote
 
-*Endpoint*: `/quote`
+_Endpoint_: `/quote`
 
 Devolveremos 1 cita famosa con su autor (ningún otro dato) al azar por cada invocación, tomada de [Quotable](https://github.com/lukePeavey/quotable). Debe evitarse entregar la misma cita cada vez (salvo que la repita la API remota).
 
@@ -161,7 +161,7 @@ Pueden usar [hot-shots](https://www.npmjs.com/package/hot-shots)
 2. Asumimos que todo el grupo participa en la resolución del trabajo. De ocurrir problemas o surgir contratiempos, es el grupo quien debe responder y solucionarlos. Pueden consultar a los docentes pero deben demostrar primero que intentaron solucionarlos internamente.
 3. De haber defectos importantes en el desarrollo o en el informe del TP, se solicitará una re-entrega. Esto tiene un impacto considerable en la nota final, por lo que les recomendamos que controlen entre todo el grupo el cumplimiento del enunciado, las conclusiones y las justificaciones antes de entregar el trabajo.
 
------------
+---
 
 ## Links útiles
 
@@ -291,3 +291,15 @@ docc exec SERVICE COMMAND
 # Versión instalada
 docc version
 ```
+
+## Devolucion y Correcciones
+
+Devolución de TP 1 - On Clouds - NOTA 6
+
+- Aparece muchas veces la palabra “estrategia” para referirse a “táctica”. Estos dos conceptos son distintos e importantes en el contexto de esta materia.
+- En el caso base NGINX no funciona como “load balancer” sino como “reverse proxy”.
+- Falta la justificación de la elección de tiempos de vida en el caché. Veo en la configuración que seleccionaron 5 segundos para Spaceflight News y 1 hora para METAR, ¿cómo sería el razonamiento para llegar a esos números?
+- Como comentario sin impacto en la nota, revisen la documentación de Redis para ver el parámetro EX, que les permite descargar en la herramienta el manejo del tiempo de expiración de las entries.
+- NGINX devuelve 503 por default cuando aplica rate limiting. Si quieren que devuelva otro código, como 429, tienen que especificarlo.
+- Falta análisis de rate limiting y justificación del límite seleccionado.
+- Con respecto a la medición de tiempos de respuesta del servicio vs. API externa, el caso base es una referencia pero falta ver el impacto de las tácticas, sobre todo la táctica de caching. Es importante determinar si alguna táctica desacopla la demora local versus la demora remota.
